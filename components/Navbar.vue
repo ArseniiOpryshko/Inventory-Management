@@ -1,21 +1,40 @@
 <template>
   <header class="main-header">
     <nav class="main-header__navbar">
-      <div class="navbar_group">
+      <NuxtLink to="/" class="navbar_group">
         <img class="navbar__logo" src="/images/logo.png" alt="" />
         <p class="navbar__title">Cinema searcher</p>
-      </div>
-      <form class="navbar__search-form" action="">
+      </NuxtLink>
+      <form class="navbar__search-form">
         <input
           class="search-form__text-input"
           type="text"
           placeholder="Search name"
+          v-model="localValue"
         />
         <input class="search-form__bttn" type="button" value="Search" />
       </form>
     </nav>
   </header>
 </template>
+
+<script>
+export default {
+  props: {
+    modelValue: String,
+  },
+  computed: {
+    localValue: {
+      get() {
+        return this.modelValue;
+      },
+      set(value) {
+        this.$emit("update:modelValue", value);
+      },
+    },
+  },
+};
+</script>
 
 <style scoped>
 .main-header {
@@ -32,11 +51,12 @@
   display: flex;
   gap: 10px;
   align-items: center;
+  text-decoration: white;
+  color: white;
 }
 .navbar__logo {
   filter: invert(0);
   height: 45px;
-  /* margin-right: 20px; */
 }
 .navbar__title {
   font-size: 30px;
@@ -62,7 +82,9 @@
   border-radius: 5px;
   outline: none;
   height: 30px;
-  width: 50px;
+  width: 60px;
   background-color: white;
+  cursor: pointer;
+  color: rgb(0, 0, 0);
 }
 </style>

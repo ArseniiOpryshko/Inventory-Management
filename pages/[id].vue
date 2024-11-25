@@ -1,7 +1,7 @@
 <template>
   <div>
     <Navbar v-model="sharedData" />
-    <Films :data="sharedData" />
+    <SpecificFilm :data="sharedData" />
   </div>
 </template>
 
